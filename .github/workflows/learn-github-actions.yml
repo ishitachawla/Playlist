@@ -1,24 +1,22 @@
 name: learn-github-actions
-on: [push]
+on:
+  issues:
+    types: [opened, edited]
+
 jobs:
-  check-bats-version:
+  auto_label:
     runs-on: ubuntu-latest
+    name: Automatic Github Issue Labeller
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-      - run: npm install -g bats
-      - run: bats -v
-      - name: Auto Github Issue Labeller
-  # You may pin to the exact commit or the version.
-  # uses: larrylawl/auto-github-issue-labeller-action@3bf15b39ebddda551472f6de4c74083194ee8271
-        uses: larrylawl/auto-github-issue-labeller-action@v1.0
-        with:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-          REPOSITORY: ${{github.repository}}
-          DELTA: "1"
-          CONFIDENCE: "2"
-          FEATURE: "enhancement"
-          BUG: "bug"
-          DOCS: "documentation"
-          VERSION: "v1.0"
+    - name: Label Step
+      uses: larrylawl/Auto-Github-Issue-Labeller@main
+      with:
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        REPOSITORY: ${{github.repository}}
+        DELTA: "1"
+        CONFIDENCE: "2"
+        FEATURE: "enhancement"
+        BUG: "bug"
+        DOCS: "documentation"
+        VERSION: "v1.0"
       
