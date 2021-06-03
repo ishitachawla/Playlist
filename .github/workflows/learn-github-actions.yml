@@ -12,7 +12,7 @@ jobs:
       uses: larrylawl/Auto-Github-Issue-Labeller@main
       with:
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-        REPOSITORY: ${{github.repository}}
+        REPOSITORY: 'ishitachawla/Playlist'
         DELTA: "1"
         CONFIDENCE: "2"
         FEATURE: "enhancement"
